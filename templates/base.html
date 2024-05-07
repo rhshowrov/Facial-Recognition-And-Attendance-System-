@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <!-- Link to Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-gray-900 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-between">
+                <a class="text-white font-bold text-lg" href="#">Home</a>
+                <button class="block lg:hidden focus:outline-none">
+                    <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+                    </svg>
+                </button>
+                <div class="hidden lg:flex">
+                    <ul class="flex space-x-4">
+                        <li>
+                            <a class="text-white hover:text-gray-300" href="{% url 'admin:index' %}" target="_blank">Database Login</a>
+                        </li>
+                        <li>
+                            <a class="text-white hover:text-gray-300" href="#">Take Attendance</a>
+                        </li>
+                        <li>
+                            <a class="text-white hover:text-gray-300" href="{% url 'userprofile' %}">Profile</a>
+                        </li>
+                        <li>
+                            <a class="text-white hover:text-gray-300" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Your page content goes here -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        {% block content %}
+           <!-- Default content goes here, to be overridden by child templates -->
+        {% endblock %}
+    </div>
+    
+</body>
+</html>

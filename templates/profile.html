@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="h-screen">
+    <div class="max-w-4xl mx-auto px-8 py-6 bg-white rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold mb-6">Welcome, {{ username }}!</h1>
+        
+        {% if courses %}
+            <h2 class="text-xl font-bold mb-4">Your Courses:</h2>
+            <table class="w-full border-collapse mb-4">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 bg-gray-100 border-b text-left">Course Name</th>
+                        <th class="py-2 px-4 bg-gray-100 border-b text-left">Section</th>
+                        <th class="py-2 px-4 bg-gray-100 border-b text-left">Timing</th>
+                        <th class="py-2 px-4 bg-gray-100 border-b text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr class="border-b">
+                            <td class="py-2 px-4 text-left">{{ course.name }}</td>
+                            <td class="py-2 px-4 text-left">{{ course.section_number }}</td>
+                            <td class="py-2 px-4 text-left">{{ course.timing }}</td>
+                            <td class="py-2 px-4 text-left">
+                                <a href="{% url 'tkAtt' course.name course.section_number %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Take Attendance</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No courses found.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}
