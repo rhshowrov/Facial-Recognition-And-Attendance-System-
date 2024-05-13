@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from userlogin.views import loginPage,signupPage,basePage,logoutPage
 from tkAtt.views import tkAtt
-from userprofile.views import userProfilePage
+from userprofile.views import userProfilePage,seeRecords
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +29,7 @@ urlpatterns = [
     path('tkAtt//<str:course_name>/<int:section_number>/',tkAtt,name='tkAtt' ),
     path('logout/',logoutPage,name='logout' ),
     path('userprofile/',userProfilePage,name='userprofile' ),
+    path('seeRecords//<str:course_name>/<int:section_number>/',seeRecords,name='seeRecords' ),
 
 
 ]

@@ -26,6 +26,7 @@
                             <td class="py-2 px-4 text-left">{{ course.timing }}</td>
                             <td class="py-2 px-4 text-left">
                                 <a href="{% url 'tkAtt' course.name course.section_number %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Take Attendance</a>
+                                <a href="{% url 'seeRecords' course.name course.section_number %}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Student Records</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendance Records{% endblock %}
+
+{% block content %}
+<div class="h-screen">
+    <div class="max-w-4xl mx-auto px-8 py-6 bg-white rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold mb-6">Attendance Records for {{ course.name }} - Section {{ course.section_number }}</h1>
+        
+        <table class="w-full border-collapse mb-4">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 bg-gray-100 border-b text-left">Student ID</th>
+                    <th class="py-2 px-4 bg-gray-100 border-b text-left">Student Name</th>
+                    <th class="py-2 px-4 bg-gray-100 border-b text-left">Attendance Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student, data in student_attendance_counts.items %}
+                <tr class="border-b">
+                    <td class="py-2 px-4 text-left">{{ data.id }}</td>
+                    <td class="py-2 px-4 text-left">{{ student }}</td>
+                    <td class="py-2 px-4 text-left">{{ data.count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
