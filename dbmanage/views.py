@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.http import HttpResponseForbidden
 from userprofile.models import Course, Student, StudentCourse
 from .forms import CourseForm, StudentForm, StudentCourseForm
-
+from django.contrib.auth.decorators import login_required
 
 def dbmanage(request):
     if not request.user.is_superuser:
@@ -20,6 +20,7 @@ from django.contrib import messages
 from .forms import CourseForm
 from django.db import IntegrityError
 
+@login_required(login_url='login')
 def add_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST)
@@ -36,7 +37,7 @@ def add_course(request):
         form = CourseForm()
     return render(request, 'add_course.html', {'form': form})
 
-
+@login_required(login_url='login')
 def add_student(request):
     if not request.user.is_superuser:
         return render(request, '403.html') 
@@ -50,6 +51,7 @@ def add_student(request):
         form = StudentForm()
     return render(request, 'add_student.html', {'form': form})
 
+@login_required(login_url='login')
 def assign_student_to_course(request):
     if not request.user.is_superuser:
         return render(request, '403.html')
@@ -66,16 +68,19 @@ def assign_student_to_course(request):
 
 
 # View to display the list of students
+@login_required(login_url='login')
 def student_list(request):
     students = Student.objects.all()
     return render(request, 'student_list.html', {'students': students})
 
 # View to display the list of courses
+@login_required(login_url='login')
 def course_list(request):
     courses = Course.objects.all()
     return render(request, 'course_list.html', {'courses': courses})
 
 # View to display which students are assigned to which courses
+@login_required(login_url='login')
 def student_course_list(request):
     student_courses = StudentCourse.objects.select_related('student', 'course').all()
     return render(request, 'student_course_list.html', {'student_courses': student_courses})

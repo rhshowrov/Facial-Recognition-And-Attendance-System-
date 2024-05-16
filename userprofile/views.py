@@ -15,6 +15,7 @@ def userProfilePage(request):
     }
     return render(request, 'profile.html',context)
 
+@login_required(login_url='login')
 def seeRecords(request, course_name, section_number):
     # Get the course object based on the provided name and section_number
     course = Course.objects.get(name=course_name, section_number=section_number)
