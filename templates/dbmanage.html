@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}DB Management{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-center">Add Student</h2>
+            <a href="{% url 'add_student' %}" class="block w-full text-center bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Go to Form</a>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-center">Add Course</h2>
+            <a href="{% url 'add_course' %}" class="block w-full text-center bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Go to Form</a>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-center">Assign Student to Course</h2>
+            <a href="{% url 'assign_student_to_course' %}" class="block w-full text-center bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600">Go to Assignment</a>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-center">View Students</h2>
+            <a href="{% url 'student_list' %}" class="block w-full text-center bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600">View Students</a>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-center">View Courses</h2>
+            <a href="{% url 'course_list' %}" class="block w-full text-center bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">View Courses</a>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-center">View Student Course List</h2>
+            <a href="{% url 'student_course_list' %}" class="block w-full text-center bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">View Student Taken Course</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

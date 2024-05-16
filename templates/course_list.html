@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="bg-white shadow-md rounded-lg p-8 w-full">
+        <h1 class="text-2xl font-semibold text-center mb-6">Offered Course List:</h1>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-blue-50 divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                            Section Number
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                            Course Name
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                            Faculty Name
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for course in courses %}
+                        <tr class="{% cycle 'bg-white' 'bg-gray-50' %}">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                {{ course.section_number }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                {{ course.name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                {{ course.faculty_name }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 from userlogin.views import loginPage,signupPage,basePage,logoutPage
 from tkAtt.views import tkAtt
 from userprofile.views import userProfilePage,seeRecords
+from dbmanage import urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +33,7 @@ urlpatterns = [
     path('logout/',logoutPage,name='logout' ),
     path('userprofile/',userProfilePage,name='userprofile' ),
     path('seeRecords//<str:course_name>/<int:section_number>/',seeRecords,name='seeRecords' ),
+    path('dbmanage/',include(urls) ),
 
 
 ]

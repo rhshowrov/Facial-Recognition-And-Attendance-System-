@@ -1,0 +1,21 @@
+<!-- 403.html -->
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+    <div class="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+        <div class="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
+            <h1 class="text-2xl font-semibold mb-6">Not Authorized!!!!</h1>
+            <button onclick="goBack()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">GO Back</button>
+            <script>
+                alert("You do not have permission to access this page!");
+
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,3 +1,4 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +7,51 @@
     <title>Navigation Bar</title>
     <!-- Link to Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the navigation bar */
+        .nav-link {
+            padding: 0.75rem 3rem;
+            border-bottom: 5px solid transparent;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .nav-link:hover {
+            border-color: rgba(33, 245, 5, 0.5);
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: underline;
+            margin: 0 1rem;
+        }
+
+        .footer-links a:hover {
+            color: #aaa;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <nav class="bg-gray-900 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 py-3">
-            <div class="flex justify-between">
-                <a class="text-white font-bold text-lg" href="#">Home</a>
-                <button class="block lg:hidden focus:outline-none">
+        <div class="max-w-full mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a class="text-white font-bold text-lg" href="{% url 'base' %}">Home</a>
+                <button class="block lg:hidden focus:outline-none" title="h">
                     <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
                     </svg>
@@ -20,16 +59,16 @@
                 <div class="hidden lg:flex">
                     <ul class="flex space-x-4">
                         <li>
-                            <a class="text-white hover:text-gray-300" href="{% url 'admin:index' %}" target="_blank">Database Login</a>
+                            <a class="text-white nav-link" href="{% url 'admin:index' %}" target="_blank">Database Login</a>
                         </li>
                         <li>
-                            <a class="text-white hover:text-gray-300" href="#">Take Attendance</a>
+                            <a class="text-white nav-link" href="{% url 'dbmanage' %}">Management</a>
                         </li>
                         <li>
-                            <a class="text-white hover:text-gray-300" href="{% url 'userprofile' %}">Profile</a>
+                            <a class="text-white nav-link" href="{% url 'userprofile' %}">Profile</a>
                         </li>
                         <li>
-                            <a class="text-white hover:text-gray-300" href="{% url 'logout' %}">Logout</a>
+                            <a class="text-white nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -40,9 +79,20 @@
     <!-- Your page content goes here -->
     <div class="max-w-7xl mx-auto px-4 py-8">
         {% block content %}
-           <!-- Default content goes here, to be overridden by child templates -->
+           <img src="{% static 'bg.png' %}" alt="bgImage">
         {% endblock %}
     </div>
-    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2024 CSE499B Capstone Project. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
+

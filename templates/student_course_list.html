@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Course Assignments{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="bg-white shadow-md rounded-lg p-8 max-w-4xl w-full">
+        <h1 class="text-2xl font-semibold text-center mb-6">Students Taken Course</h1>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Student Name</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Course Section Number</th>
+                        <th scope="col" class="px-6 py-3 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Course Name</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for student_course in student_courses %}
+                        <tr class="{% cycle 'bg-gray-50' '' %}">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ student_course.student.name }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ student_course.course.section_number }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ student_course.course.name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
