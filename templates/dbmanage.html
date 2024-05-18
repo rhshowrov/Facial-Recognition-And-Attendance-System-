@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}DB Management{% endblock %}
-
 {% block content %}
+
 <div class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <h1 class="text-3xl font-bold mb-6">Welcome {{ username |upper }}</h1>
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        
         <div class="bg-white shadow-lg rounded-lg p-6">
             <h2 class="text-xl font-semibold mb-4 text-center">Add Student</h2>
             <a href="{% url 'add_student' %}" class="block w-full text-center bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Go to Form</a>

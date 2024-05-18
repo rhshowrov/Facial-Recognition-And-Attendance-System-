@@ -5,7 +5,7 @@ from userprofile.models import *
 import cv2
 import os
 import numpy as np
-import pickle
+import pickle,joblib
 from mtcnn import MTCNN
 from keras_facenet import FaceNet
 from django.conf import settings
@@ -13,7 +13,16 @@ from django.conf import settings
 # Create your views here.
 # Path to the pre-trained model file (Smodel.pkl)
 # model_path = os.path.join(settings.BASE_DIR, 'tkAtt', 'models', 'Smodel.pkl')
-model_path = os.path.join(settings.BASE_DIR, "tkAtt", "models", "updatedmodel.pkl")
+model_path = os.path.join(settings.BASE_DIR, 'tkAtt', 'models', 'Smodelnabil.pkl')
+# model_path = os.path.join(settings.BASE_DIR, "tkAtt", "models", "updatedmodel.pkl")
+
+
+#nabil pkl model list
+label_names = {
+        3: 'Mim', 2: 'Ishfaq', 5: 'Nabil', 8: 'Raiyan', 6: 'Poran', 4: 'Minhaj', 16: 'protik', 7: 'Prapti', 
+        9: 'Sakib', 10: 'Sam',
+        11: 'Showrov', 17: 'samia', 13: 'Tahia', 12: 'Sinthia', 15: 'Vabna', 0: 'Fahim', 14: 'Tithi', 1: 'Ira',
+    }
 # label for Smodels
 # label_names = {
 #         0: "Fahim",
@@ -38,29 +47,29 @@ model_path = os.path.join(settings.BASE_DIR, "tkAtt", "models", "updatedmodel.pk
 #         19: "Samia",
 #         # Add more label-name mappings as needed
 #     }
-
-label_names = {
-    14: "Sinthia",
-    12: "Shohail",
-    1: "Ishfaq",
-    13: "Showrov",
-    16: "Tithi",
-    17: "Vabna",
-    2: "Mahin",
-    3: "Mim",
-    15: "Tahia",
-    0: "Fahim",
-    4: "Minhaj",
-    19: "samia",
-    10: "Sakib",
-    8: "Rafiur",
-    9: "Raiyan",
-    5: "Poran",
-    7: "Rabby",
-    18: "nabil",
-    11: "Sam",
-    6: "Prapti",
-}
+#updated pkl model list 
+# label_names = {
+#     14: "Sinthia",
+#     12: "Shohail",
+#     1: "Ishfaq",
+#     13: "Showrov",
+#     16: "Tithi",
+#     17: "Vabna",
+#     2: "Mahin",
+#     3: "Mim",
+#     15: "Tahia",
+#     0: "Fahim",
+#     4: "Minhaj",
+#     19: "samia",
+#     10: "Sakib",
+#     8: "Rafiur",
+#     9: "Raiyan",
+#     5: "Poran",
+#     7: "Rabby",
+#     18: "nabil",
+#     11: "Sam",
+#     6: "Prapti",
+# }
 # Define the directory name and path to store face images
 directory_name = "temp"
 directory_path = os.path.join(settings.BASE_DIR, "tkAtt", directory_name)
@@ -69,9 +78,7 @@ directory_path = os.path.join(settings.BASE_DIR, "tkAtt", directory_name)
 # Create your views here.
 @login_required(login_url="login")
 def tkAtt(request, course_name, section_number):
-    vid = cv2.VideoCapture(
-        0
-    )  # Use 0 for default webcam, or change to another number if using an external camera
+    vid = cv2.VideoCapture(0)  # Use 0 for default webcam, or change to another number if using an external camera
     predicted_names = set()
 
     # Initialize MTCNN detector and FaceNet embedder
@@ -86,10 +93,12 @@ def tkAtt(request, course_name, section_number):
         embeddings = embedder.embeddings(face_img)  # Generate embeddings
         return embeddings[0]
 
-    # Load the trained model for face recognition
+    #Load the trained model for face recognition
     with open(model_path, "rb") as file:
         model = pickle.load(file)
-
+    # # joblib
+    # # Load model with joblib
+    # model = joblib.load(model_path)
     # Create 'temp' directory if it doesn't exist
     if not os.path.exists(directory_path):
         os.makedirs(directory_path)
@@ -137,7 +146,7 @@ def tkAtt(request, course_name, section_number):
             prob = ypreds_proba[0, predicted_class_index]
 
             # Define your threshold (e.g., 0.5 or any value suitable for your use case)
-            threshold = 0.14
+            threshold = 0.60
             # Assuming 'ypreds_proba' is a list of probabilities for the first (and only) sample
             if prob <= threshold:
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)

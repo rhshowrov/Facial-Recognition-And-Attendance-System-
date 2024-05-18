@@ -6,19 +6,26 @@ from django.http import HttpResponseForbidden
 from userprofile.models import Course, Student, StudentCourse
 from .forms import CourseForm, StudentForm, StudentCourseForm
 from django.contrib.auth.decorators import login_required
-
-def dbmanage(request):
-    if not request.user.is_superuser:
-        return render(request, '403.html')
-    else:
-        return render(request, 'dbmanage.html')
-    
-# views.py
-
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import CourseForm
 from django.db import IntegrityError
+
+
+@login_required(login_url='login')
+def dbmanage(request):
+    username = request.user.username
+    dict={
+        'username':username,
+    }
+    if not request.user.is_superuser:
+        return render(request, '403.html')
+    else:
+        return render(request, 'dbmanage.html',context=dict)
+    
+# views.py
+
+
 
 @login_required(login_url='login')
 def add_course(request):
