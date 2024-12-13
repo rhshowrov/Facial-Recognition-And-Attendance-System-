@@ -78,7 +78,7 @@ directory_path = os.path.join(settings.BASE_DIR, "tkAtt", directory_name)
 # Create your views here.
 @login_required(login_url="login")
 def tkAtt(request, course_name, section_number):
-    vid = cv2.VideoCapture(0)  # Use 0 for default webcam, or change to another number if using an external camera
+    vid = cv2.VideoCapture(1)  # Use 0 for default webcam, or change to another number if using an external camera
     predicted_names = set()
 
     # Initialize MTCNN detector and FaceNet embedder
